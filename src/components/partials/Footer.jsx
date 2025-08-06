@@ -56,7 +56,7 @@ export default function Footer() {
     // Floating elements animation
     gsap.from(".footer-element", {
       y: 50,
-      opacity: 1,
+      opacity: 0,
       duration: 1,
       stagger: 0.1,
       ease: "back.out(1.7)",
