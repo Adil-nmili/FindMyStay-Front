@@ -62,7 +62,7 @@ export default function Footer() {
       ease: "back.out(1.7)",
       scrollTrigger: {
         trigger: footerRef.current,
-        start: "top 80%",
+        start: "top 30%",
         toggleActions: "play none none none"
       }
     })
