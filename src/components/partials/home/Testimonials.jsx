@@ -58,7 +58,7 @@ export default function Testimonials() {
     const ctx = gsap.context(() => {
       // Section background animation
       gsap.from(sectionRef.current, {
-        backgroundColor: "#ffffff",
+        backgroundColor: "#000",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top bottom",
@@ -134,18 +134,18 @@ export default function Testimonials() {
   return (
     <section 
       ref={sectionRef}
-      className="relative py-24 min-h-screen flex items-center justify-center bg-[#f8f5f2] overflow-hidden"
+      className="relative py-24 min-h-screen flex items-center justify-center bg-[#0D0D0D] overflow-hidden"
     >
       {/* Decorative elements */}
-      <div className="absolute inset-0 opacity-10 [background-image:radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px]" />
+      <div className="absolute inset-0 opacity-10 [background-image:radial-gradient(#D0D3D9_1px,transparent_1px)] [background-size:16px_16px]" />
       
       <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
         {/* Heading */}
         <h2 
           ref={headingRef}
-          className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-[#565659]"
+          className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-[#D0D3D9]"
         >
-          What Our <span className="font-medium text-[#00010D] underline">Clients Say</span>
+          What Our <span className="font-medium text-[#D0D3D9] underline">Clients Say</span>
         </h2>
 
         {/* Subtext */}
@@ -180,7 +180,7 @@ export default function Testimonials() {
           >
             {testimonials.map((item, index) => (
               <SwiperSlide key={index}>
-                <Card className="h-full testimonial-card bg-white/80 backdrop-blur-sm border border-white/20 hover:border-white/40 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
+                <Card className="h-full testimonial-card bg-[#565659]/80 backdrop-blur-sm border border-white/20 hover:border-white/40 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
                   <CardContent className="p-8 space-y-6">
                     {/* Glow effect */}
                     <div 
@@ -204,12 +204,12 @@ export default function Testimonials() {
                         </AvatarFallback>
                       </Avatar>
                       <div className="text-left">
-                        <h3 className="font-semibold text-lg text-[#2a2a2a]">{item.name}</h3>
-                        <p className="text-sm text-[#5a5a5a]">{item.role}</p>
+                        <h3 className="font-semibold text-lg text-[#D0D3D9]">{item.name}</h3>
+                        <p className="text-sm text-[#00010D]">{item.role}</p>
                         <div className="mt-2">{renderStars(item.rating)}</div>
                       </div>
                     </div>
-                    <p className="text-[#5a5a5a] italic text-left leading-relaxed">
+                    <p className="text-[#89888C] italic text-left leading-relaxed">
                       “{item.message}”
                     </p>
                   </CardContent>

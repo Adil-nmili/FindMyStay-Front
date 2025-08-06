@@ -62,7 +62,7 @@ export default function Footer() {
       ease: "back.out(1.7)",
       scrollTrigger: {
         trigger: footerRef.current,
-        start: "top 30%",
+        start: "top 90%",
         toggleActions: "play none none none"
       }
     })
@@ -88,7 +88,7 @@ export default function Footer() {
   return (
     <footer 
       ref={footerRef}
-      className="relative bg-gradient-to-b from-[#0a1a3a] to-[#1F3C88] text-white py-20 px-6 overflow-hidden"
+      className="relative bg-gradient-to-b from-[#00010D] to-[#011a58] text-white py-20 px-6 overflow-hidden"
     >
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -107,23 +107,23 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-xl font-bold mb-6 text-[#F26A4B]">Contact Us</h3>
+            <h3 className="text-xl font-bold mb-6 text-[#D0D3D9]">Contact Us</h3>
             <div className="space-y-4">
-              <div className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
-                <div className="p-2 bg-[#F26A4B]/10 rounded-full">
-                  <MapPin className="w-5 h-5 text-[#F26A4B]" />
+              <div className="flex items-center gap-3 text-gray-500 hover:text-white transition-colors">
+                <div className="p-2 bg-[#89888C]/10 rounded-full">
+                  <MapPin className="w-5 h-5 text-[#89888C]" />
                 </div>
                 <span>123 Rue Al Qods, Casablanca</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
-                <div className="p-2 bg-[#F26A4B]/10 rounded-full">
-                  <Phone className="w-5 h-5 text-[#F26A4B]" />
+              <div className="flex items-center gap-3 text-gray-500 hover:text-white transition-colors">
+                <div className="p-2 bg-[#89888C]/10 rounded-full">
+                  <Phone className="w-5 h-5 text-[#89888C]" />
                 </div>
                 <span>+212 6 00 00 00 00</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
-                <div className="p-2 bg-[#F26A4B]/10 rounded-full">
-                  <Mail className="w-5 h-5 text-[#F26A4B]" />
+              <div className="flex items-center gap-3 text-gray-500 hover:text-white transition-colors">
+                <div className="p-2 bg-[#89888C]/10 rounded-full">
+                  <Mail className="w-5 h-5 text-[#89888C]" />
                 </div>
                 <span>contact@findmystay.ma</span>
               </div>
@@ -139,15 +139,15 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h3 className="text-xl font-bold mb-6 text-[#F26A4B]">Quick Links</h3>
+            <h3 className="text-xl font-bold mb-6 text-[#D0D3D9]">Quick Links</h3>
             <ul className="space-y-3">
               {['Home', 'Search', 'Properties', 'Contact', 'About Us', 'Blog'].map((item) => (
                 <li key={item}>
                   <a 
                     href="#" 
-                    className="text-gray-300 hover:text-white transition-colors flex items-center group"
+                    className="text-gray-500 hover:text-white transition-colors flex items-center group"
                   >
-                    <span className="w-2 h-2 bg-[#F26A4B] rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-all"></span>
+                    <span className="w-2 h-2 bg-[#89888C] rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-all"></span>
                     {item}
                   </a>
                 </li>
@@ -164,8 +164,8 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <h3 className="text-xl font-bold mb-6 text-[#F26A4B]">Follow Us</h3>
-            <p className="text-gray-300 mb-6">Join our community for the latest updates.</p>
+            <h3 className="text-xl font-bold mb-6 text-[#D0D3D9]">Follow Us</h3>
+            <p className="text-gray-500 mb-6">Join our community for the latest updates.</p>
             <div className="flex gap-4">
               {[
                 { icon: <Facebook className="w-6 h-6" />, color: '#3b5998' },
@@ -193,16 +193,16 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
-            <h3 className="text-xl font-bold mb-6 text-[#F26A4B]">Newsletter</h3>
-            <p className="text-gray-300 mb-6">Subscribe to receive exclusive offers and updates.</p>
+            <h3 className="text-xl font-bold mb-6 text-[#D0D3D9]">Newsletter</h3>
+            <p className="text-gray-500 mb-6">Subscribe to receive exclusive offers and updates.</p>
             <form className="space-y-4">
               <Input
                 type="email"
                 placeholder="Your email address"
-                className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 focus:ring-2 focus:ring-[#F26A4B]"
+                className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 focus:ring-2 focus:ring-[#00010D]"
               />
               <Button 
-                className="w-full bg-gradient-to-r from-[#F26A4B] to-[#f24b4b] hover:from-[#f24b4b] hover:to-[#F26A4B] text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#F26A4B]/30"
+                className="w-full bg-gradient-to-r from-[#0D0D0D] to-[#00010D] hover:from-[#00010D] hover:to-[#00010D] text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#00010D]/30"
               >
                 Subscribe
               </Button>

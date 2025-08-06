@@ -13,25 +13,25 @@ const features = [
     icon: ShieldCheck,
     title: "Secure & Trusted",
     description: "All listings are verified and secured with trust and transparency.",
-    color: "#F26A4B"
+    color: "#FE7610"
   },
   {
     icon: Search,
     title: "Smart Search",
     description: "Easily find homes that fit your needs with powerful filters.",
-    color: "#1F3C88"
+    color: "#360187"
   },
   {
     icon: Users,
     title: "Tenant Support",
     description: "Get help any time with our 24/7 customer service.",
-    color: "#6A994E"
+    color: "#29A378"
   },
   {
     icon: Building2,
     title: "Verified Properties",
     description: "Every property is reviewed and approved for quality assurance.",
-    color: "#A68A64"
+    color: "#B8553D"
   },
 ];
 
@@ -139,18 +139,18 @@ export default function WhyChooseUs() {
   return (
     <section 
       ref={sectionRef}
-      className="relative py-24 min-h-screen flex items-center justify-center bg-[#f8f5f2] overflow-hidden"
+      className="relative py-24 min-h-screen flex items-center justify-center bg-[#0D0D0D] overflow-hidden"
     >
       {/* Decorative elements */}
-      <div className="absolute inset-0 opacity-10 [background-image:radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px]" />
+      <div className="absolute inset-0 opacity-10 [background-image:radial-gradient(#D0D3D9_1px,transparent_1px)] [background-size:16px_16px]" />
       
       <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
         {/* Heading */}
         <h2 
           ref={headingRef}
-          className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-[#2a2a2a]"
+          className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-[#D0D3D9]"
         >
-          Why Choose <span className="font-medium text-[#565659] underline">FindMyStay</span>
+          Why Choose <span className="font-medium text-[#D0D3D9] underline">FindMyStay</span>
         </h2>
 
         {/* Subtext */}
@@ -179,7 +179,7 @@ export default function WhyChooseUs() {
                 }}
               />
               
-              <Card className="h-full bg-white/80 backdrop-blur-sm border border-white/20 group-hover:border-white/40 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
+              <Card className="h-full bg-[#565659]/80 backdrop-blur-sm border border-white/20 group-hover:border-white/40 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
                 <CardContent className="p-8 flex flex-col items-center text-center space-y-6">
                   <div 
                     className="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-110"
@@ -190,8 +190,8 @@ export default function WhyChooseUs() {
                       style={{ color: feature.color }} 
                     />
                   </div>
-                  <h3 className="font-semibold text-xl text-[#2a2a2a]">{feature.title}</h3>
-                  <p className="text-[#5a5a5a] leading-relaxed">{feature.description}</p>
+                  <h3 className="font-semibold text-xl text-[#D0D3D9]">{feature.title}</h3>
+                  <p className="text-[#89888C] leading-relaxed">{feature.description}</p>
                 </CardContent>
               </Card>
             </div>

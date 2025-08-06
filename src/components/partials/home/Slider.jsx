@@ -8,7 +8,7 @@ const luxurySlides = [
     title: "Seaside Luxury Villa",
     description: "Private beachfront villa with infinity pool and panoramic ocean views.",
     image: "/assets/villa2.jpg",
-    accentColor: "#D4AF37", // Gold
+    accentColor: "#B9B7BD", // Gold
     // type: "villa",
     // features: ["5 bedrooms", "Private beach", "Infinity pool", "Smart home system"]
   },
@@ -17,7 +17,7 @@ const luxurySlides = [
     title: "Hillside Modern Villa",
     description: "Architectural masterpiece with vineyard and helipad access.",
     image: "/assets/villa1.jpg",
-    accentColor: "#A68A64", // Bronze
+    accentColor: "#B9B7BD", // Bronze
     // type: "villa",
     // features: ["6 bedrooms", "Home theater", "Wine cellar", "360° views"]
   },
@@ -28,7 +28,7 @@ const luxurySlides = [
     title: "Penthouse Sky Residence",
     description: "Ultra-luxury penthouse in the city's tallest tower with private elevator.",
     image: "/assets/app4.jpg",
-    accentColor: "#C0C0C0", // Silver
+    accentColor: "#B9B7BD", // Silver
     // type: "apartment",
     // features: ["3 bedrooms", "Private rooftop", "Smart glass walls", "24/7 concierge"]
   },
@@ -37,7 +37,7 @@ const luxurySlides = [
     title: "Historic Luxury Loft",
     description: "Restored heritage building with modern amenities in the cultural district.",
     image: "/assets/app5.jpg",
-    accentColor: "#E6BE8A", // Gold
+    accentColor: "#B9B7BD", // Gold
     // type: "apartment",
     // features: ["2 bedrooms", "Exposed brick", "High ceilings", "Walkability score: 98"]
   },

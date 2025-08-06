@@ -18,7 +18,7 @@ export default function CallToAction() {
     const ctx = gsap.context(() => {
       // Background animation
       gsap.from(sectionRef.current, {
-        backgroundColor: "#ffffff",
+        backgroundColor: "#000000",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top bottom",
@@ -101,7 +101,7 @@ export default function CallToAction() {
   return (
     <section 
       ref={sectionRef}
-      className="relative py-24 min-h-screen flex items-center justify-center bg-[#1F3C88] overflow-hidden"
+      className="relative py-24 min-h-screen flex items-center justify-center bg-[#0D0D0D] overflow-hidden"
     >
       {/* Decorative elements */}
       <div className="absolute inset-0 opacity-10 [background-image:radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />
