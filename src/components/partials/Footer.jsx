@@ -55,7 +55,7 @@ export default function Footer() {
 
     // Floating elements animation
     gsap.from(".footer-element", {
-      y: 50,
+      y: 30,
       opacity: 0,
       duration: 1,
       stagger: 0.1,
@@ -63,7 +63,7 @@ export default function Footer() {
       scrollTrigger: {
         trigger: footerRef.current,
         start: "top 90%",
-        toggleActions: "play none none none"
+        toggleActions: "play play none none"
       }
     })
 
@@ -73,7 +73,7 @@ export default function Footer() {
       repeat: -1,
       duration: 2,
       ease: "sine.inOut",
-      boxShadow: "0 0 15px rgba(242, 106, 75, 0.7)",
+      boxShadow: "0 0 15px black",
       stagger: 0.2
     })
 
