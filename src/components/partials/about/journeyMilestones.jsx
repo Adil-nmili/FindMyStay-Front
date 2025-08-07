@@ -1,12 +1,13 @@
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React, { useRef, useEffect, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Lightbulb, Rocket, Users, Building, Flag } from 'lucide-react';
-import {Card, CardHeader, CardTitle, CardDescription, CardContent} from '@/components/ui/card'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 
+// Register GSAP plugin
+gsap.registerPlugin(ScrollTrigger);
 
-
-// --- JOURNEY DATA ---
-// Replace this with your actual platform milestones.
+// Journey data
 const journeyMilestones = [
   {
     icon: <Lightbulb />,
@@ -41,82 +42,155 @@ const journeyMilestones = [
   },
 ];
 
+const MilestoneCard = ({ milestone, index, isVisible }) => {
+  const cardRef = useRef(null);
+  const iconRef = useRef(null);
 
-// --- FRAMER MOTION & ANIMATION HOOK ---
-const MilestoneCard = ({ milestone, index }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
-  
-  const isOdd = index % 2 !== 0;
+  useEffect(() => {
+    if (isVisible) {
+      gsap.to(cardRef.current, {
+        x: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: "power3.out"
+      });
 
-  const cardVariants = {
-    hidden: { opacity: 0, x: isOdd ? 100 : -100 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
-  };
+      gsap.to(iconRef.current, {
+        scale: 1,
+        duration: 0.6,
+        ease: "back.out(1.7)",
+        delay: 0.2
+      });
+    }
+  }, [isVisible]);
 
   return (
-    <div ref={ref} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-      {/* -- The vertical line -- */}
+    <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+      {/* Vertical line */}
       <div className="hidden md:flex w-10 h-full items-center justify-center">
-         <div className="h-full w-1 bg-gray-800 pointer-events-none"></div>
+        <div className="h-full w-px bg-gradient-to-b from-transparent via-[#565659] to-transparent" />
       </div>
       
-      {/* -- The icon on the line -- */}
-      <div className={`z-10 flex items-center justify-center mx-2 w-10 h-10 rounded-full bg-secondary text-primary shadow-md group-hover:bg-primary group-hover:text-gray-100 transition-colors duration-300 ${milestone.current ? 'bg-primary text-secondary-foreground' : ''}`}>
+      {/* Icon */}
+      <div 
+        ref={iconRef}
+        className={`z-10 flex items-center justify-center mx-2 w-12 h-12 rounded-full bg-[#00010D] border border-[#565659]/50 text-[#D0D3D9] shadow-lg group-hover:bg-[#D0D3D9] group-hover:text-[#0D0D0D] transition-all duration-300 scale-0 ${
+          milestone.current ? 'bg-[#D0D3D9] text-[#0D0D0D] border-[#D0D3D9]' : ''
+        }`}
+      >
         {milestone.icon}
       </div>
 
-      {/* -- The card content -- */}
-      <motion.div
-        variants={cardVariants}
-        initial="hidden"
-        animate={isInView ? 'visible' : 'hidden'}
-        className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)]"
+      {/* Card content */}
+      <div 
+        ref={cardRef}
+        className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] opacity-0 transform"
+        style={{
+          translateX: index % 2 === 0 ? '-100px' : '100px',
+          transition: 'none' // Disable CSS transitions
+        }}
       >
-        <Card>
+        <Card className="bg-[#00010D] border-[#565659]/20 hover:border-[#D0D3D9]/40 transition-colors duration-300">
           <CardHeader>
-            <CardDescription>{milestone.date}</CardDescription>
-            <CardTitle>{milestone.title}</CardTitle>
+            <CardDescription className="text-[#89888C]">{milestone.date}</CardDescription>
+            <CardTitle className="text-[#D0D3D9]">{milestone.title}</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground">{milestone.description}</p>
+            <p className="text-[#89888C]">{milestone.description}</p>
           </CardContent>
         </Card>
-      </motion.div>
+      </div>
     </div>
   );
 };
 
-
-// --- MAIN PLATFORM JOURNEY COMPONENT ---
-
 export default function PlatformJourney() {
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isVisible) {
+      gsap.to(".journey-title", {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: "power3.out"
+      });
+
+      gsap.to(".journey-subtitle", {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        delay: 0.3,
+        ease: "power3.out"
+      });
+
+      gsap.to(".timeline-line", {
+        scaleY: 1,
+        duration: 1.5,
+        ease: "expo.out"
+      });
+    }
+  }, [isVisible]);
+
   return (
-    <section className="py-20 sm:py-28">
-      <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mx-auto mb-16 max-w-2xl text-center"
-        >
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Our Journey So Far
+    <section 
+      ref={sectionRef}
+      className="relative bg-[#0D0D0D] py-28 px-6 overflow-hidden"
+    >
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#89888C] to-transparent" />
+      
+      <div className="container mx-auto">
+        <div className="mx-auto mb-20 max-w-2xl text-center">
+          <h2 
+            className="journey-title text-4xl md:text-5xl font-light text-white mb-6 tracking-tight opacity-0 transform translate-y-10"
+          >
+            Our <span className="text-[#D0D3D9] font-medium">Journey</span>
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p 
+            className="journey-subtitle text-lg text-[#89888C] max-w-2xl mx-auto leading-relaxed opacity-0 transform translate-y-10"
+          >
             From a simple idea to a growing platform, every step in our journey has been driven by passion and a commitment to our mission.
           </p>
-        </motion.div>
-
-        {/* Timeline Container */}
-        <div className="relative flex flex-col gap-y-8 m-auto md:w-fit before:absolute before:inset-0 before:ml-5 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-border/40 before:to-transparent md:before:mx-auto md:before:w-0.5">
-          {journeyMilestones.map((milestone, index) => (
-            <MilestoneCard key={milestone.title} milestone={milestone} index={index} />
-          ))}
         </div>
 
+        <div className="relative flex flex-col gap-y-12 m-auto md:w-fit">
+          <div className="timeline-line absolute left-1/2 md:left-auto md:right-auto md:mx-auto h-full w-px bg-gradient-to-b from-transparent via-[#565659] to-transparent scale-y-0 transform-origin-top" />
+          
+          {journeyMilestones.map((milestone, index) => (
+            <MilestoneCard 
+              key={milestone.title} 
+              milestone={milestone} 
+              index={index}
+              isVisible={isVisible}
+            />
+          ))}
+        </div>
       </div>
+      
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#89888C] to-transparent" />
     </section>
   );
-};
+}

@@ -201,10 +201,10 @@ export default function WhyChooseUs() {
         {/* CTA Button */}
         <div ref={buttonRef} className="mt-20">
           <Button 
-            className="relative overflow-hidden px-8 py-6 rounded-full text-lg font-medium bg-gradient-to-r from-[#F26A4B] to-[#1F3C88] hover:from-[#1F3C88] hover:to-[#F26A4B] text-white shadow-lg hover:shadow-xl transition-all duration-500"
+            className="relative overflow-hidden px-8 py-6 rounded-full text-lg font-medium bg-gradient-to-r from-[#0D0D0D] to-[#00010D] hover:from-[#00010D] hover:to-[#0D0D0D] text-white shadow-lg hover:shadow-xl transition-all duration-500"
           >
             <span className="relative z-10">Get Started</span>
-            <span className="absolute inset-0 bg-gradient-to-r from-[#1F3C88] to-[#F26A4B] opacity-0 hover:opacity-100 transition-opacity duration-500" />
+            <span className="absolute inset-0 bg-gradient-to-r from-[#00010D] to-[#0D0D0D] opacity-0 hover:opacity-100 transition-opacity duration-500" />
           </Button>
         </div>
       </div>

@@ -1,6 +1,9 @@
-import { useRef, useEffect, useState } from 'react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { useRef, useEffect } from 'react'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { motion } from 'framer-motion'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import {
   Facebook,
   Twitter,
@@ -8,98 +11,79 @@ import {
   Mail,
   Phone,
   MapPin
-} from 'lucide-react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+} from 'lucide-react'
 
 export default function Footer() {
-  const footerRef = useRef(null);
-  const elementsRef = useRef([]);
-  const [isVisible, setIsVisible] = useState(false);
+  const footerRef = useRef(null)
+  const elementsRef = useRef([])
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
+    gsap.registerPlugin(ScrollTrigger)
 
-    if (footerRef.current) {
-      observer.observe(footerRef.current);
-    }
+    // 3D tilt effect on hover for footer sections
+    elementsRef.current.forEach((el) => {
+      if (!el) return
+      
+      gsap.set(el, { transformPerspective: 1000 })
+      
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect()
+        const x = e.clientX - rect.left
+        const y = e.clientY - rect.top
+        const centerX = rect.width / 2
+        const centerY = rect.height / 2
+        const rotateY = ((x - centerX) / centerX) * 5
+        const rotateX = ((y - centerY) / centerY) * -5
+        
+        gsap.to(el, {
+          rotationY: rotateY,
+          rotationX: rotateX,
+          ease: "power2.out",
+          duration: 0.5
+        })
+      })
 
-    return () => {
-      if (footerRef.current) {
-        observer.unobserve(footerRef.current);
+      el.addEventListener('mouseleave', () => {
+        gsap.to(el, {
+          rotationY: 0,
+          rotationX: 0,
+          ease: "elastic.out(1, 0.5)",
+          duration: 1
+        })
+      })
+    })
+
+    // Floating elements animation
+    gsap.from(".footer-element", {
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.1,
+      ease: "back.out(1.7)",
+      scrollTrigger: {
+        trigger: footerRef.current,
+        start: "top 90%",
+        toggleActions: "play play none none"
       }
-    };
-  }, []);
+    })
 
-  useEffect(() => {
-    if (isVisible) {
-      // 3D tilt effect on hover for footer sections
-      elementsRef.current.forEach((el) => {
-        if (!el) return;
-        
-        gsap.set(el, { transformPerspective: 1000 });
-        
-        el.addEventListener('mousemove', (e) => {
-          const rect = el.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-          const rotateY = ((x - centerX) / centerX) * 5;
-          const rotateX = ((y - centerY) / centerY) * -5;
-          
-          gsap.to(el, {
-            rotationY: rotateY,
-            rotationX: rotateX,
-            ease: "power2.out",
-            duration: 0.5
-          });
-        });
+    // Glow effect for social icons
+    gsap.to(".social-icon", {
+      yoyo: true,
+      repeat: -1,
+      duration: 2,
+      ease: "sine.inOut",
+      boxShadow: "0 0 15px black",
+      stagger: 0.2
+    })
 
-        el.addEventListener('mouseleave', () => {
-          gsap.to(el, {
-            rotationY: 0,
-            rotationX: 0,
-            ease: "elastic.out(1, 0.5)",
-            duration: 1
-          });
-        });
-      });
-
-      // Animate footer elements in
-      gsap.to(".footer-element", {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        stagger: 0.1,
-        ease: "back.out(1.7)"
-      });
-
-      // Glow effect for social icons
-      gsap.to(".social-icon", {
-        yoyo: true,
-        repeat: -1,
-        duration: 2,
-        ease: "sine.inOut",
-        boxShadow: "0 0 15px black",
-        stagger: 0.2
-      });
-    }
-  }, [isVisible]);
+  }, [])
 
   const addToRefs = (el) => {
     if (el && !elementsRef.current.includes(el)) {
-      elementsRef.current.push(el);
+      elementsRef.current.push(el)
     }
-  };
+  }
 
   return (
     <footer 
@@ -115,9 +99,13 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-16">
           {/* Contact Info */}
-          <div
+          <motion.div
             ref={addToRefs}
-            className="footer-element bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:border-[#F26A4B]/30 transition-all duration-300 transform translate-y-8 opacity-0"
+            className="footer-element bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:border-[#F26A4B]/30 transition-all duration-300"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
             <h3 className="text-xl font-bold mb-6 text-[#D0D3D9]">Contact Us</h3>
             <div className="space-y-4">
@@ -139,18 +127,19 @@ export default function Footer() {
                 </div>
                 <span>contact@findmystay.ma</span>
               </div>
-              {/* Other contact items... */}
             </div>
-          </div>
+          </motion.div>
 
           {/* Quick Links */}
-          <div
+          <motion.div
             ref={addToRefs}
-            className="footer-element bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:border-[#F26A4B]/30 transition-all duration-300 transform translate-y-8 opacity-0"
-            style={{ transitionDelay: '0.1s' }}
+            className="footer-element bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:border-[#F26A4B]/30 transition-all duration-300"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h3 className="text-xl font-bold mb-6 text-[#D0D3D9]">Quick Links</h3>
-            {/* Quick links content... */}
             <ul className="space-y-3">
               {['Home', 'Search', 'Properties', 'Contact', 'About Us', 'Blog'].map((item) => (
                 <li key={item}>
@@ -164,16 +153,18 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Social Media */}
-          <div
+          <motion.div
             ref={addToRefs}
-            className="footer-element bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:border-[#F26A4B]/30 transition-all duration-300 transform translate-y-8 opacity-0"
-            style={{ transitionDelay: '0.2s' }}
+            className="footer-element bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:border-[#F26A4B]/30 transition-all duration-300"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
           >
             <h3 className="text-xl font-bold mb-6 text-[#D0D3D9]">Follow Us</h3>
-            {/* Social media content... */}
             <p className="text-gray-500 mb-6">Join our community for the latest updates.</p>
             <div className="flex gap-4">
               {[
@@ -190,17 +181,19 @@ export default function Footer() {
                   {social.icon}
                 </a>
               ))}
-              </div>
-          </div>
+            </div>
+          </motion.div>
 
           {/* Newsletter */}
-          <div
+          <motion.div
             ref={addToRefs}
-            className="footer-element bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:border-[#F26A4B]/30 transition-all duration-300 transform translate-y-8 opacity-0"
-            style={{ transitionDelay: '0.3s' }}
+            className="footer-element bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:border-[#F26A4B]/30 transition-all duration-300"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.6 }}
           >
             <h3 className="text-xl font-bold mb-6 text-[#D0D3D9]">Newsletter</h3>
-           
             <p className="text-gray-500 mb-6">Subscribe to receive exclusive offers and updates.</p>
             <form className="space-y-4">
               <Input
@@ -214,16 +207,17 @@ export default function Footer() {
                 Subscribe
               </Button>
             </form>
-          </div>
+          </motion.div>
         </div>
-        
 
         {/* Bottom Line */}
-        <div
-          className="footer-element pt-8 border-t border-white/10 text-center transform opacity-0"
-          style={{ transitionDelay: '0.4s' }}
+        <motion.div
+          className="footer-element pt-8 border-t border-white/10 text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
         >
-          {/* Copyright and links... */}
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 mb-4 md:mb-0">
               © {new Date().getFullYear()} FindMyStay. All rights reserved.
@@ -234,8 +228,8 @@ export default function Footer() {
               <a href="#" className="text-gray-400 hover:text-white transition-colors">Sitemap</a>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
-  );
+  )
 }

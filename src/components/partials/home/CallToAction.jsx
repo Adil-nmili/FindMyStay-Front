@@ -146,10 +146,10 @@ export default function CallToAction() {
         {/* CTA Button */}
         <div ref={buttonRef} className="mb-16">
           <Button 
-            className="relative overflow-hidden px-8 py-6 rounded-full text-lg font-medium bg-gradient-to-r from-[#F26A4B] to-[#F4EBD0] hover:from-[#F4EBD0] hover:to-[#F26A4B] text-[#1F3C88] shadow-lg hover:shadow-xl transition-all duration-500"
+            className="relative overflow-hidden px-8 py-6 rounded-full text-lg font-medium bg-gradient-to-r from-[#00010D] to-[#0D0D0D] hover:from-[#0D0D0D] hover:to-[#00010D] text-white shadow-lg hover:shadow-xl transition-all duration-500"
           >
             <span className="relative z-10">Get Started Now</span>
-            <span className="absolute inset-0 bg-gradient-to-r from-[#F4EBD0] to-[#F26A4B] opacity-0 hover:opacity-100 transition-opacity duration-500" />
+            
           </Button>
         </div>
 
@@ -165,7 +165,7 @@ export default function CallToAction() {
             />
             <button
               type="submit"
-              className="px-6 py-3 bg-[#F26A4B] hover:bg-[#d95836] text-white rounded-lg transition-colors"
+              className="px-6 py-3 bg-[#D0D3D9] hover:bg-[#565659] text-[#00010D] rounded-lg transition-colors"
             >
               Subscribe
             </button>
