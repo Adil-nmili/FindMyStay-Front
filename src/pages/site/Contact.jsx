@@ -58,7 +58,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/10">
+    <div className="min-h-screen bg-gradient-to-br from-[#0D0D0D] to-[#00010D]">
       {/* Animated background elements */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
         <motion.div 
@@ -96,7 +96,7 @@ const ContactPage = () => {
         className="pt-24 pb-12 text-center"
       >
         <div className="container mx-auto px-4 max-w-4xl">
-          <Badge className="px-4 py-1 bg-primary/10 text-primary hover:bg-primary/20 mb-4">
+          <Badge className="px-4 py-1 bg-[#D0D3D9] text-primary hover:bg-[#D0D3D9]/80 mb-4">
             <MessageCircle className="h-4 w-4 mr-2" />
             We're here to help
           </Badge>
@@ -128,17 +128,17 @@ const ContactPage = () => {
                 variants={cardVariants}
                 whileHover="hover"
               >
-                <Card className="h-full hover:border-primary transition-colors">
-                  <CardHeader>
-                    <div className="bg-primary/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                      <Mail className="h-6 w-6 text-primary" />
+                <Card className="h-full hover:border-primary p-4 transition-colors bg-[#565659]">
+                  <CardHeader className="p-0">
+                    <div className="bg-primary/60 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                      <Mail className="h-6 w-6 text-white" />
                     </div>
-                    <CardTitle>Email Us</CardTitle>
-                    <CardDescription>We'll reply quickly</CardDescription>
+                    <CardTitle className="text-white">Email Us</CardTitle>
+                    <CardDescription className='text-[#89888C]'>We'll reply quickly</CardDescription>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-primary font-medium">support@rentease-morocco.com</p>
-                    <Button variant="link" className="pl-0 mt-2">
+                  <CardContent className='p-0'>
+                    <p className="text-white text-sm font-medium">support@rentease-morocco.com</p>
+                    <Button variant="outline" className="pl-0 mt-2">
                       Send email <ChevronRight className="ml-1 h-4 w-4" />
                     </Button>
                   </CardContent>
@@ -149,17 +149,17 @@ const ContactPage = () => {
                 variants={cardVariants}
                 whileHover="hover"
               >
-                <Card className="h-full hover:border-primary transition-colors">
-                  <CardHeader>
-                    <div className="bg-primary/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                      <Phone className="h-6 w-6 text-primary" />
+                <Card className="h-full hover:border-primary p-4 bg-[#565659] transition-colors">
+                  <CardHeader className="p-0">
+                    <div className="bg-primary/60 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                      <Phone className="h-6 w-6 text-white" />
                     </div>
-                    <CardTitle>Call Us</CardTitle>
-                    <CardDescription>Mon-Fri, 9am-6pm</CardDescription>
+                    <CardTitle className="text-white">Call Us</CardTitle>
+                    <CardDescription className="text-[#89888c]">Mon-Fri, 9am-6pm</CardDescription>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-primary font-medium">+212 6 12 34 56 78</p>
-                    <Button variant="link" className="pl-0 mt-2">
+                  <CardContent className="p-0">
+                    <p className="text-white text-sm font-medium">+212 6 12 34 56 78</p>
+                    <Button variant="outline" className="pl-0 mt-2">
                       Call now <ChevronRight className="ml-1 h-4 w-4" />
                     </Button>
                   </CardContent>
@@ -175,13 +175,13 @@ const ContactPage = () => {
                     <MapPin className="h-6 w-6 text-primary" />
                   </div>
                   <CardTitle>Our Office</CardTitle>
-                  <CardDescription>Visit us in Casablanca</CardDescription>
+                  <CardDescription>Visit us in Marrakech</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="mb-4">123 Business Avenue, Casablanca, Morocco 20250</p>
+                  <p className="mb-4">123 Business Avenue, Marrakech, Morocco 40250</p>
                   <div className="aspect-video rounded-lg overflow-hidden">
                     <iframe 
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d106376.56000668267!2d-7.6693932!3d33.5722678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda7cd4778aa113b%3A0xb06c1d84f310fd3!2sCasablanca%2C%20Morocco!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" 
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d108013.2522747635!2d-8.0866876!3d31.6345263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdafee8d96179e51%3A0x5950b6534f87adb8!2sMarrakesh%2C%20Morocco!5e0!3m2!1sen!2sus!4v1712345678901!5m2!1sen!2sus" 
                       width="100%" 
                       height="100%" 
                       style={{ border: 0 }} 
@@ -287,7 +287,7 @@ const ContactPage = () => {
                   
                   <Button 
                     size="lg" 
-                    className="w-full py-6 text-base bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
+                    className="w-full py-6 text-base  "
                   >
                     <Send className="h-5 w-5 mr-2" />
                     Send Message
@@ -303,7 +303,7 @@ const ContactPage = () => {
               transition={{ delay: 0.8 }}
               className="mt-8"
             >
-              <h3 className="text-lg font-medium mb-4">Follow us on social media</h3>
+              <h3 className="text-lg font-medium mb-4 text-white underline">Follow us on social media</h3>
               <div className="flex gap-4">
                 {[
                   { icon: <Instagram className="h-5 w-5" />, label: "Instagram" },
@@ -315,7 +315,7 @@ const ContactPage = () => {
                     key={index} 
                     variant="outline" 
                     size="icon" 
-                    className="rounded-full w-12 h-12 hover:bg-primary/10 hover:text-primary"
+                    className="rounded-full w-12 h-12 hover:bg-transparent hover:text-white"
                   >
                     {social.icon}
                     <span className="sr-only">{social.label}</span>
@@ -337,7 +337,7 @@ const ContactPage = () => {
       >
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-bold text-white mb-4">Frequently Asked Questions</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Find quick answers to common questions about our rental platform
             </p>
