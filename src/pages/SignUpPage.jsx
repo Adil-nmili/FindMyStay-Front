@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 // import { useAuth } from "../context/AuthContext";
 import { LOGIN, PRIVACY, TERMES } from "../router/Router";
+import Navigation from "../components/partials/Navigation";
 
 // Zod schema
 const formSchema = z.object({
@@ -97,9 +98,10 @@ export const SignUpPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center mt-20 justify-center p-4">
-      <motion.div className="w-full max-w-md bg-background p-8 rounded-xl shadow-lg border" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-3xl font-bold mb-4 text-center">Create an Account</h1>
+    <div className="min-h-screen flex items-center bg-[url(/assets/signup-bg.png)] bg-no-repeat bg-cover justify-center flex-col ">
+      <Navigation />
+      <motion.div className="w-full max-w-md  bg-background px-8 py-4 rounded-xl shadow-lg border" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <h1 className="text-3xl font-bold mb-4 text-slate-900 text-center">Create an Account</h1>
         {error && <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-md text-center">{error}</div>}
 
         <Form {...form}>
@@ -205,17 +207,20 @@ export const SignUpPage = () => {
             {/* Step 3: Terms */}
             {step === 3 && (
               <FormField control={form.control} name="terms" render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 p-2">
+                <FormItem className="flex flex-wrap  items-start p-2">
                   <FormControl>
+                    <div className="flex items-center space-x-2">
                     <Checkbox 
                       checked={field.value} 
                       onCheckedChange={field.onChange} 
                     />
-                  </FormControl>
-                  <FormLabel className="text-sm leading-tight">
+                     <FormLabel className="text-sm leading-tight ">
                     I agree to the <Link to={TERMES} className="text-primary underline">Terms</Link> and <Link to={PRIVACY} className="text-primary underline">Privacy</Link>.
                   </FormLabel>
-                  <FormMessage />
+                  </div>
+                  </FormControl>
+                 
+                  <FormMessage className="w-full"  />
                 </FormItem>
               )} />
               

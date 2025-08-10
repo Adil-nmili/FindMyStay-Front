@@ -78,6 +78,22 @@ const ProtectedRoute = ({ children, role }) => {
 
 export const Router = createBrowserRouter([
   {
+    path: REGISTER,
+    element: <SignUpPage />
+  },
+  // {
+  //     path: REGISTER,
+  //     element: <SignUp />
+  // },
+  {
+    path: LOGIN,
+    element: <SignInPage />
+  },
+  {
+    path: FORGET_PASSWORD,
+    element: <ForgotPassword />
+  },
+  {
     element: <SiteLayout />,
     children: [
       {
@@ -112,28 +128,13 @@ export const Router = createBrowserRouter([
         path: FAQ,
         element: <Faq />
       },
-      {
-        path: REGISTER,
-        element: <SignUpPage />
-      },
-      // {
-      //     path: REGISTER,
-      //     element: <SignUp />
-      // },
-      {
-        path: LOGIN,
-        element: <SignInPage />
-      },
-      {
-        path: FORGET_PASSWORD,
-        element: <ForgotPassword />
-      }
+
     ]
   },
   {
     element: (
       // <ProtectedRoute role={"client"}>
-        <LayoutDashboard />
+      <LayoutDashboard />
       // </ProtectedRoute>
     ),
     children: [

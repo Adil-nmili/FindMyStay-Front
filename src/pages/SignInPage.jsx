@@ -20,6 +20,7 @@ import { ADMIN_DASHBOARD, ASSISTANCE_DASHBOARD, HOME, USER_MANAGEMENT, USER_PROF
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRequest } from "../redux/actions";
+import Navigation from "../components/partials/Navigation";
 // import { loginStart, loginSuccess, loginFailure } from "../redux/authSlice";
 
 
@@ -78,8 +79,9 @@ export const SignInPage = () => {
   // },[])
 
   return (
-    <div className="min-h-screen mt-20 flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-[url(/assets/login-bg.png)] bg-no-repeat bg-cover flex items-center justify-center flex-col  p-4 relative overflow-hidden">
       {/* Animated Gradient Background */}
+      <Navigation />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
